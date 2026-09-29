@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version="1.10">
+  <model name="x500_gimbal_mid360">
+    <include merge="true">
+      <uri>model://x500</uri>
+    </include>
+
+    <include merge="true">
+      <uri>model://gimbal</uri>
+      <pose>0 0 0.26 0 0 3.14</pose>
+    </include>
+    <joint name="GimbalAttachJoint" type="fixed">
+      <parent>base_link</parent>
+      <child>cgo3_mount_link</child>
+    </joint>
+
+    <!--
+      MID-360 的外观、IMU 和插件参数统一由 model://mid360 提供。
+      这里只设置安装位姿并将它固定到 X500 机体。
+    -->
+    <include merge="true">
+      <uri>model://mid360</uri>
+      <pose relative_to="base_link">0 0 0.08 0 0 3.141592653589793</pose>
+    </include>
+    <joint name="Mid360AttachJoint" type="fixed">
+      <parent>base_link</parent>
+      <child>mid360_link</child>
+    </joint>
+  </model>
+</sdf>
